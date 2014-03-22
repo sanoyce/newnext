@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   include Stateful
+  include Commentable
   
   acts_as_tree
   
@@ -11,7 +12,6 @@ class Task < ActiveRecord::Base
   validates_presence_of :master
   
   validate :teammates_at_root
-  
   
   def teammates_at_root
     if self.root? && self.teammates.length == 0

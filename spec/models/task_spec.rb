@@ -1,7 +1,16 @@
 require 'spec_helper'
 
 describe Task do
-  
+  describe 'Commentable behavior' do
+    before do
+      @task = FactoryGirl.create :task
+    end
+    
+    it "should add a comment" do
+      @task.add_comment('label', 'A statement', @task.master)
+      @task.comments.length.should eql 1
+    end
+  end
   
   describe 'Stateful behavior' do
     before do
