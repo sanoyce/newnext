@@ -9,7 +9,6 @@ FactoryGirl.define do
   end
   
   factory :tasktree, class: Task do
-  
     statement "Base Task"
     next_action "Base Action"
     after(:build) do |base|
@@ -21,4 +20,5 @@ FactoryGirl.define do
       base.children.first.children << FactoryGirl.create(:task, status: 'Done', teammates: [], master: base.master)
     end
   end
+  
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321014420) do
+ActiveRecord::Schema.define(version: 20140322135543) do
 
   create_table "comments", force: true do |t|
     t.string   "label"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140321014420) do
     t.integer  "parent_id"
     t.string   "statement"
     t.string   "next_action"
-    t.string   "status",       default: "Active"
+    t.string   "status",          default: "Active"
     t.datetime "active_at"
     t.datetime "done_at"
     t.datetime "someday_at"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20140321014420) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "master_id"
+    t.integer  "sponsor_task_id"
   end
 
   create_table "tasks_users", force: true do |t|

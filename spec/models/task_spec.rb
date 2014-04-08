@@ -1,6 +1,38 @@
 require 'spec_helper'
 
 describe Task do
+  describe 'Sponsor/Sponsored behavior' do
+    before do
+      @top = FactoryGirl.create :task, :statement => 'top'
+      @middle = FactoryGirl.create :task, :statement => 'middle'
+      @bottom = FactoryGirl.create :task, :statement => 'bottom'
+    
+      @top.sponsored_tasks << @middle
+      @middle.sponsor_task = @top
+      
+      @middle.sponsored_tasks << @bottom
+      @bottom.sponsor_task = @middle
+    end
+    
+    it 'should have three valid tasks' do
+      @top.should be_valid
+      @middle.should be_valid
+      @bottom.should be_valid
+    end
+    
+    describe 'sponsors loop' do
+      before do
+        @bottom.sponsored_tasks << @top
+        @top.sponsor_task = @bottom
+      end
+      
+      it 'should be invalid' do
+        @top.should be_invalid
+        @bottom.should be_invalid
+      end
+    end
+  end
+  
   describe 'Commentable behavior' do
     before do
       @task = FactoryGirl.create :task

@@ -1,26 +1,16 @@
-%h1 Tasks
+%h2 Tasks
+/= render 'shared/links'
+/= render 'shared/newfilters'
 
-%table
-	%thead
-		%tr
-			%th Statement
-			%th 
-			%th
-			%th
-	
-	%tbody
-		- @tasks.each do |task|
-			%tr
-				%td 
-					=task.statement
-				%td 
-					=link_to 'Show', task
-				%td 
-					=link_to 'Edit', edit_task_path(task)
-				%td 
-					=link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }
-			
-%br
+%ul
+	- @tasks.each do |task|
+		= render 'show', task: task, depth: 0, show_children: false
+	%li{class: "new task #{cycle('odd', 'even', name: :task_class)}"}!= link_to "New Task", new_task_path, id: 'new-task'
+		
 
-%p
-	= link_to 'New Task', new_task_path
+/=render 'show', tasks: @tasks, depth: 0, show_children: false
+/= render 'show', children: @tasks, filters: @filters, depth: 0, show_children: false
+						
+
+
+

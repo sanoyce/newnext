@@ -1,8 +1,15 @@
 = form_for [@task] do |form| 
 	= hidden_field_tag :commit, @commit
+	- if params.has_key?('parent_id')
+		= hidden_field_tag :parent_id, params['parent_id']
 	%fieldset		
-		= label :erg, :statement
+		= label :task, :statement
 		= form.text_field :statement, {:size => 80}
+		%br
+		= label :task, :next_action
+		= form.text_field :next_action, {:size => 80}
 	
 	%div{:class => 'actions'}
-		= form.submit "SUBMIT"
+		= form.button "Submit", onClick: "submitForm(#{params['parent_id']})"
+		= form.button "Cancel", onClick: "cancelForm(#{params['parent_id']})"
+

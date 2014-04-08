@@ -1,3 +1,41 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+li.task:first-child {
+	border-top: 1px solid black;
+}
+
+li.task {
+  font-size: 13pt;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	overflow: hidden;
+	clear: both;
+}
+
+li.odd.task {
+	background-color: #efd;
+}
+
+li.even.task {
+	background-color: #ffe;
+}
+
+li.task.drop-hover {
+	background-color: #FCC;
+}
+
+div.statement {
+	display: inline;
+}
+
+div.next_action {
+	display: inline;
+	font-style: italic;
+}
+
+div.actions {
+	display: inline;
+}
