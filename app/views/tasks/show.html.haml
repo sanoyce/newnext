@@ -1,0 +1,9 @@
+%h2 Tasks for Task
+/= render 'shared/links'
+/= render 'shared/newfilters'
+
+%ul
+	=render 'show', task: @task, show_children: true, depth: 0
+/= render 'show', children: @tasks, filters: @filters, depth: 0, show_children: false
+
+= link_to 'Back', tasks_path
