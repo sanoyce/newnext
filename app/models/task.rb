@@ -26,6 +26,9 @@ class Task < ActiveRecord::Base
   scope :done, lambda {|startdate, enddate|
         where(done_at: (startdate..enddate)) }  
   
+  def team
+    self.root?
+  end
   
   def teammates_at_root
     if self.root? && self.teammates.length == 0

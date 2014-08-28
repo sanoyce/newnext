@@ -1,6 +1,18 @@
 require 'spec_helper'
 
 describe Task do
+  describe 'Team vs Child behavior' do
+    before do
+      @team = FactoryGirl.create :task
+      #@child = FactoryGirl.create :task, parent: @team
+    end
+    
+    it 'should identify as team? = true' do
+      @team.team.should be_true
+    end
+  end
+  
+  
   describe 'Sponsor/Sponsored behavior' do
     before do
       @top = FactoryGirl.create :task, :statement => 'top'

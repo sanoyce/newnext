@@ -15,6 +15,10 @@ li.task {
 	clear: both;
 }
 
+div.task {
+	background-color: #efd;
+}
+
 li.odd.task {
 	background-color: #efd;
 }
@@ -25,6 +29,10 @@ li.even.task {
 
 li.task.drop-hover {
 	background-color: #FCC;
+}
+
+div.master {
+	display: inline;
 }
 
 div.statement {

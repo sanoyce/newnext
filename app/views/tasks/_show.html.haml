@@ -1,20 +1,11 @@
-%li{id: task.id, class: "task #{cycle('odd', 'even', name: :task_class)}"}
+%li{id: "task-#{task.id}", class: "#{task.team ? 'team' : 'child'} task #{cycle('odd', 'even', name: :task_class)}"}
 	%div{class: :content}
-		%div{class: :body}
-			%div{class: :actions}
-				- if !show_children
-					= link_to "Show", task_path(task)
-			%div{class: :statement}
-				- if task.statement != ""
-					= task.statement
-			%div{class: :next_action}
-				- if task.next_action != ""
-					= task.next_action
-	%ul
+		= render partial: 'show_content', locals: {task: task, show_children: show_children}
+	%ul{class: :children}
 		- if show_children
-			%li{id: "new-child-#{task.id}", class: "task #{cycle('odd', 'even', name: :task_class)}"}
-				= link_to "New Child", new_task_path(parent_id: task), class: "new-child parent-id-#{task.id}"
 			- task.children.each do |child|
-				= render('show', task: child, depth: depth+1, show_children: true)
+				= render partial: 'show', locals: {task: child, depth: depth+1, show_children: true}
+			//%li{id: "new-child-#{task.id}", class: "task #{cycle('odd', 'even', name: :task_class)}"}
+			//	= link_to "New Child", new_task_path(parent_id: task), class: "new-child parent-id-#{task.id}"
 
 

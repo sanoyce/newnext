@@ -4,13 +4,9 @@
 
 %ul
 	- @tasks.each do |task|
-		= render 'show', task: task, depth: 0, show_children: false
-	%li{class: "new task #{cycle('odd', 'even', name: :task_class)}"}!= link_to "New Task", new_task_path, id: 'new-task'
+		= render 'show', task: task, depth: 0, show_children: @task == task ? true : false
 		
-
-/=render 'show', tasks: @tasks, depth: 0, show_children: false
-/= render 'show', children: @tasks, filters: @filters, depth: 0, show_children: false
-						
-
-
-
+%div#taskform.task
+		
+%div.task
+	= link_to "New Task", new_task_path, id: 'new-task'

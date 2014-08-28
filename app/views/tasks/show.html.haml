@@ -1,9 +1,17 @@
-%h2 Tasks for Task
+%h2 Tasks for Team
 /= render 'shared/links'
 /= render 'shared/newfilters'
 
-%ul
-	=render 'show', task: @task, show_children: true, depth: 0
+%div{id: "task-#{@task.id}", class: "task team"}
+	%div{class: :content}
+		= render partial: 'show_team', locals: {task: @task, show_children: true}
+
+	%ul{class: :children}
+		=render partial: 'show_children', locals: {tasks: @task.children, depth: 0, show_children: true}
+
+
+
+
 /= render 'show', children: @tasks, filters: @filters, depth: 0, show_children: false
 
 = link_to 'Back', tasks_path
