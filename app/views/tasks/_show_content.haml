@@ -1,0 +1,19 @@
+%div{class: :actions}
+	- if show_children
+		= link_to "Edit", edit_task_path(task), id: "edit-task-#{task.id}", class: "edit-task"
+		= link_to "New Child", new_task_path(parent_id: task.id), id: "new-child-#{task.id}", class: "new-child"
+		= task.status
+	- else
+		= link_to "Show", task, id: "task-#{task.id}", class: "show-task"
+%div{class: :master}
+	= task.master.name
+ 
+%div{class: :statement}
+	= task.statement
+\=>
+%div{class: :next_action}
+	= task.next_action
+%div{class: :teammates}
+	- if task.team
+		Teammates: 
+		= task.teammates.map{|tm| tm.name}.join("; ")

@@ -1,0 +1,22 @@
+= form_for [@task] do |form| 
+	= hidden_field_tag :commit, @commit
+	- if params.has_key?('parent_id')
+		= hidden_field_tag :parent_id, params['parent_id']
+	%fieldset		
+		= label :task, :statement
+		= form.text_field :statement, {:size => 80}
+		%br
+		= label :task, :next_action
+		= form.text_field :next_action, {:size => 80}
+		%br
+		= label :task, :master
+		= form.select :master_id, options_from_collection_for_select(User.all, :id, :name)
+		%br
+		= label :task, :status
+		= form.select 'status', options_from_collection_for_select(task.allowed_statuses, 'to_s', 'to_s')
+		
+	
+	%div{:class => 'actions'}
+		= form.button "Submit", class: "task-submit"
+		= form.button "Cancel", class: "task-cancel"
+
